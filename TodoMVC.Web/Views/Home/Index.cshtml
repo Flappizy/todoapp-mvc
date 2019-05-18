@@ -1,0 +1,35 @@
+﻿@model IEnumerable<TodoItemViewModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container-fluid d-flex flex-column align-items-center">
+    <h1 class="m-5 text-decoration-none">TODO LIST</h1>
+
+    <a class="btn btn-success w-25 m-3" asp-action="Create">New Task</a>
+    @foreach(var item in Model)
+    {
+        <div class="row w-50 task d-flex justify-content-between align-items-center">
+                @if (item.IsCompleted)
+                {
+                    <i class="fas fa-check"></i>
+                }
+                else
+                {
+                    <i class="fas fa-times"></i>
+                }
+
+            <h3>@item.Title</h3>
+
+            <div>
+                <a asp-action="Edit" asp-route-id="@item.Id">
+                    <button type="button" class="btn btn-info"><i class="fas fa-pencil-alt"></i></button>
+                </a>
+                <a asp-action="Delete" asp-route-id="@item.Id">
+                    <button type="button" class="btn btn-danger"><i class="fas fa-times"></i></button>
+                </a>
+            </div>
+        </div>
+    }
+</div>

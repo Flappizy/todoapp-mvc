@@ -1,0 +1,23 @@
+﻿@model TodoItemEditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<a asp-action="Index" class="btn btn-link">< Back to list</a>
+
+<form method="post" asp-action="Edit" class="w-25">
+    <fieldset>
+        <legend>Edit Task</legend>
+        <div class="form-group">
+            <label asp-for="Title"></label>
+            <input type="text" asp-for="Title" class="form-control" required />
+        </div>
+        <div class="form-check">
+            <input type="checkbox" asp-for="IsCompleted" />
+            <label asp-for="IsCompleted"></label>
+        </div>
+
+        <button type="submit" class="btn btn-success">Update</button>
+    </fieldset>
+</form>

@@ -6,6 +6,11 @@ namespace TodoMVC.Data
 {
     public class TodoListDbContext : DbContext
     {
+        public TodoListDbContext(DbContextOptions options) : base(options)
+        {
+
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
