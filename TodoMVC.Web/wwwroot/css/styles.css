@@ -4,6 +4,26 @@
     padding-top: 60px;
 }
 
-footer{
+footer {
     background-color: #fff;
+}
+
+.buttons, .todo-item {
+    width: 50%;
+}
+
+@media (max-width: 995px) {
+    .buttons, .todo-item {
+        width: 75%;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+
+    .buttons, .todo-item {
+        width: 100%;
+    }
 }
