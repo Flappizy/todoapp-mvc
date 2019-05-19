@@ -1,6 +1,6 @@
 ![](to_do_list_logo.png)
 
-Simple TODO List app with ASP.NET Core.
+<p align="center">Simple TODO List app with ASP.NET Core.</p>
 
 ![](todoapp.PNG)
 
