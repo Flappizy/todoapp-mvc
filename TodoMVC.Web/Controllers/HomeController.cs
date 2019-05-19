@@ -19,16 +19,21 @@ namespace TodoMVC.Web.Controllers
             _services = services;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(bool? completed)
         {
             IEnumerable<TodoItemViewModel> items = (await
-                _services.GetAllAsync(0, 5))
+                _services.GetAllAsync(0, 10))
                 .Select(x => new TodoItemViewModel
                 {
                     Id = x.Id,
                     IsCompleted = x.IsCompleted,
                     Title = x.Title
                 });
+
+            if(completed != null)
+            {
+                items = items.Where(x => x.IsCompleted == completed);
+            }
 
             return View(items);
         }
@@ -70,12 +75,13 @@ namespace TodoMVC.Web.Controllers
                     IsCompleted = todoItem.IsCompleted
                 };
 
-                return View();
+                return View(model);
             }
 
             return NotFound();
         }
 
+        [HttpPost]
         public async Task<IActionResult> Edit(TodoItemEditModel model)
         {
             var todoItem = await _services.GetByIdAsync(model.Id);
@@ -91,6 +97,13 @@ namespace TodoMVC.Web.Controllers
         public async Task<IActionResult> Delete(Guid id)
         {
             await _services.RemoveAsync(id);
+
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> ClearCompleted()
+        {
+            _services.ClearCompletedAsync().Wait();
 
             return RedirectToAction("Index");
         }

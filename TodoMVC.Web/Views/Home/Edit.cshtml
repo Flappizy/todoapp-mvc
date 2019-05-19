@@ -11,10 +11,10 @@
         <legend>Edit Task</legend>
         <div class="form-group">
             <label asp-for="Title"></label>
-            <input type="text" asp-for="Title" class="form-control" required />
+            <input type="text" asp-for="Title" class="form-control" value="@Model.Title" required />
         </div>
         <div class="form-check">
-            <input type="checkbox" asp-for="IsCompleted" />
+            <input type="checkbox" asp-for="IsCompleted" checked="@Model.IsCompleted"/>
             <label asp-for="IsCompleted"></label>
         </div>
 

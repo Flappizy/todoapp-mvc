@@ -16,5 +16,7 @@ namespace TodoMVC.Services
         Task RemoveAsync(Guid id);
 
         Task EditAsync(TodoItem todoItem);
+
+        Task ClearCompletedAsync();
     }
 }

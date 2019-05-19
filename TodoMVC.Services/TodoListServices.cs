@@ -23,6 +23,15 @@ namespace TodoMVC.Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task ClearCompletedAsync()
+        {
+            var completed = _context.TodoItems.Where(x => x.IsCompleted);
+
+            _context.RemoveRange(completed);
+
+            _context.SaveChangesAsync().Wait();
+        }
+
         public async Task EditAsync(TodoItem todoItem)
         {
             TodoItem item = _context.TodoItems.SingleOrDefault(x => x.Id == todoItem.Id);

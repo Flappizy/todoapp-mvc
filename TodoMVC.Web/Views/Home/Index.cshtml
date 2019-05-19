@@ -4,32 +4,39 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="container-fluid d-flex flex-column align-items-center">
-    <h1 class="m-5 text-decoration-none">TODO LIST</h1>
+    <div class="container-fluid d-flex flex-column align-items-center">
+        <h1 class="text-decoration-none">TODOS</h1>
 
-    <a class="btn btn-success w-25 m-3" asp-action="Create">New Task</a>
-    @foreach(var item in Model)
-    {
-        <div class="row w-50 task d-flex justify-content-between align-items-center">
+        <a class="btn btn-success w-25 m-3" asp-action="Create">New Task</a>
+
+        <div class="row w-50 d-flex justify-content-around buttons">
+            <a class="btn btn-light" asp-action="Index"><i class="far fa-circle text-info"></i> All</a>
+            <a class="btn btn-light" asp-action="Index" asp-route-completed="false"><i class="fas fa-times text-danger"></i> Active</a>
+            <a class="btn btn-light" asp-action="Index" asp-route-completed="true"><i class="fas fa-check text-success"></i> Completed</a>
+            <a class="btn btn-light" asp-action="ClearCompleted">Clear Completed</a>
+        </div>
+        @foreach (var item in Model)
+        {
+            <div class="row w-50 task d-flex justify-content-between align-items-center">
                 @if (item.IsCompleted)
                 {
-                    <i class="fas fa-check"></i>
+                    <i class="fas fa-check text-success"></i>
                 }
                 else
                 {
-                    <i class="fas fa-times"></i>
+                    <i class="fas fa-times text-danger"></i>
                 }
 
-            <h3>@item.Title</h3>
+                <h3>@item.Title</h3>
 
-            <div>
-                <a asp-action="Edit" asp-route-id="@item.Id">
-                    <button type="button" class="btn btn-info"><i class="fas fa-pencil-alt"></i></button>
-                </a>
-                <a asp-action="Delete" asp-route-id="@item.Id">
-                    <button type="button" class="btn btn-danger"><i class="fas fa-times"></i></button>
-                </a>
+                <div>
+                    <a asp-action="Edit" asp-route-id="@item.Id">
+                        <button type="button" class="btn btn-info"><i class="fas fa-pencil-alt"></i></button>
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@item.Id">
+                        <button type="button" class="btn btn-danger"><i class="fas fa-times"></i></button>
+                    </a>
+                </div>
             </div>
-        </div>
-    }
-</div>
+        }
+    </div>

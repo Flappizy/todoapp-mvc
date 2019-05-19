@@ -1,0 +1,9 @@
+﻿body {
+    background: url(../background.jpg);
+    font-family: 'Baloo Bhai', cursive;
+    padding-top: 60px;
+}
+
+footer{
+    background-color: #fff;
+}
